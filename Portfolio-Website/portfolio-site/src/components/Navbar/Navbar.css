@@ -1,0 +1,123 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 0;
+    z-index: 100;
+    transition: padding 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-scrolled {
+    padding: 1rem 0;
+    background-color: var(--color-cream);
+    border-bottom: 2px solid var(--color-navy);
+}
+
+.nav-container {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 2000px;
+    grid-template-columns: none;
+}
+
+.nav-logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffffff;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+.nav-scrolled .nav-logo {
+    color: var(--color-navy);
+}
+
+.nav-logo .dot {
+    color: var(--color-red);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links button {
+    background: none;
+    border: none;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-scrolled .nav-links button {
+    color: var(--color-navy);
+}
+
+.nav-links button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-scrolled .nav-links button::after {
+    background-color: var(--color-navy);
+}
+
+.nav-links button:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav-links .btn-contact {
+    background-color: #ffffff;
+    color: var(--color-navy);
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #ffffff;
+    transition: all 0.3s ease;
+}
+
+.nav-scrolled .nav-links .btn-contact {
+    background-color: var(--color-navy);
+    color: var(--color-cream);
+    border-color: var(--color-navy);
+}
+
+.nav-links .btn-contact::after {
+    display: none;
+}
+
+.nav-links .btn-contact:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.nav-scrolled .nav-links .btn-contact:hover {
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* simple mobile design for static site */
+    }
+}
