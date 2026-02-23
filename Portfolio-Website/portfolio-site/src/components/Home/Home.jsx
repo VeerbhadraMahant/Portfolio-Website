@@ -27,9 +27,6 @@ const Home = () => {
                         View Work
                     </button>
                 </div>
-
-                {/* Background handles the visual now */}
-                <div className="home-visual"></div>
             </div>
         </section>
     );
