@@ -1,12 +1,3 @@
-# Images and Media
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.svg
-*.webp
-*.ico
-
 # Directories to ignore
 node_modules/
 dist/
