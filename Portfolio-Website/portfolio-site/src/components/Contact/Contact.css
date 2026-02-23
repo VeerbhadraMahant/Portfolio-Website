@@ -170,3 +170,11 @@
         gap: 3rem;
     }
 }
+
+/* Specific Phone Target */
+@media (max-width: 600px) {
+    .contact-section {
+        /* Correct 30px right shift */
+        background-position: calc(50% - 30px) center;
+    }
+}

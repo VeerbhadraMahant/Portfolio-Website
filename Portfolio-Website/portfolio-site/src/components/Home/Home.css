@@ -91,3 +91,11 @@
         margin-left: 0;
     }
 }
+
+/* Specific Phone Target */
+@media (max-width: 600px) {
+    .home-background-layer {
+        /* Correct 20px left shift */
+        background-position: calc(50% + 20px) center;
+    }
+}
