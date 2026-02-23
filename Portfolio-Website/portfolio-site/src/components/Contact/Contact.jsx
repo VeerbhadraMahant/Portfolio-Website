@@ -51,7 +51,7 @@ const Contact = () => {
             </div>
 
             <footer className="footer">
-                <p>© {new Date().getFullYear()} Veerbhadra Mahant. Designed & Built using React and Nodejs.</p>
+                <p>© {new Date().getFullYear()} Veerbhadra Mahant. Engineered with React.</p>
             </footer>
         </section>
     );

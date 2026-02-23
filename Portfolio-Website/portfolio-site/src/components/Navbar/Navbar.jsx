@@ -3,6 +3,7 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +26,11 @@ const Navbar = () => {
         behavior: 'smooth'
       });
     }
+    setIsMobileMenuOpen(false); // Close menu when a link is clicked
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
@@ -34,7 +40,13 @@ const Navbar = () => {
           VEERBHADRA MAHANT<span className="dot">.</span>
         </div>
 
-        <ul className="nav-links">
+        <div className={`hamburger-menu ${isMobileMenuOpen ? 'active' : ''}`} onClick={toggleMobileMenu}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
+
+        <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
           <li><button onClick={() => scrollToSection('about')}>About</button></li>
           <li><button onClick={() => scrollToSection('work')}>Work</button></li>
           <li><button onClick={() => scrollToSection('experience')}>Experience</button></li>

@@ -35,7 +35,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   text-transform: uppercase;
   font-weight: 700;
@@ -88,6 +93,7 @@ section {
   display: flex;
   align-items: center;
   overflow: hidden;
+  border-bottom: 10px solid var(--color-cream);
 }
 
 .section-number {

@@ -20,7 +20,12 @@ const Home = () => {
                     <p className="home-subtitle">
                         AIML Engineer & <br /> Software Developer
                     </p>
-                    <button className="btn-primary">View Work</button>
+                    <button
+                        className="btn-primary"
+                        onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                        View Work
+                    </button>
                 </div>
 
                 {/* Background handles the visual now */}
