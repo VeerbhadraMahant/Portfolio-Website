@@ -168,7 +168,7 @@
     }
 
     .about-content {
-        padding-left: 0;
+        padding: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -182,6 +182,7 @@
 
     .section-title {
         font-size: 3rem;
+        text-align: center;
     }
 
     .skills-grid-container {
