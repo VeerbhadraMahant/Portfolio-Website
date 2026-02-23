@@ -89,24 +89,16 @@
     }
 
     .timeline-line {
-        top: 0;
-        left: 50%;
-        margin-left: -2px;
-        /* Center the 4px vertical line */
-        width: 4px;
-        height: 100%;
-        z-index: 1;
+        display: none;
     }
 
     .timeline-item {
         flex-direction: column;
         text-align: center;
+        margin-bottom: 3rem;
     }
 
     .timeline-node {
-        margin: 0 auto;
-        margin-bottom: 2rem;
-        position: relative;
-        z-index: 2;
+        display: none;
     }
 }
