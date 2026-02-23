@@ -95,10 +95,12 @@
     .home-subtitle {
         font-size: 1.2rem;
         margin-left: 0;
+        text-align: center;
     }
 
     .btn-primary {
-        margin-left: 0;
+        margin: 0 auto;
+        display: block;
     }
 }
 
