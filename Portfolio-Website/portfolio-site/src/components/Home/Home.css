@@ -95,7 +95,7 @@
 /* Specific Phone Target */
 @media (max-width: 600px) {
     .home-background-layer {
-        /* Correct 20px left shift */
-        background-position: calc(50% + 20px) center !important;
+        /* Shift background to reveal the face on the right */
+        background-position: 85% center !important;
     }
 }
