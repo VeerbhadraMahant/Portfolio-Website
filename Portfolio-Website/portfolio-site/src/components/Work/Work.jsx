@@ -27,6 +27,8 @@ const Work = () => {
 
     return (
         <section id="work" className="work-section">
+            <div className="section-number">02</div>
+
             <div className="content-wrapper grid-container work-container">
                 <h2 className="section-title work-title">Works</h2>
 

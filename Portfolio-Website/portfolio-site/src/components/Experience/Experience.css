@@ -1,6 +1,11 @@
 .experience-section {
     background-color: var(--color-navy);
-    color: var(--color-cream);
+    background-image: url('../../assets/Fin_Vec_4.png');
+    background-size: cover;
+    background-position: center 20%;
+    /* Shifted down by setting Y position to 20% */
+    background-repeat: no-repeat;
+    color: #ffffff;
 }
 
 .exp-container {
@@ -9,8 +14,8 @@
 }
 
 .exp-title {
-    color: var(--color-cream);
-    align-self: flex-start;
+    color: #ffffff;
+    align-self: center;
 }
 
 .timeline-container {
@@ -22,18 +27,19 @@
 
 .timeline-line {
     position: absolute;
-    top: 50px;
-    left: 0;
-    width: 100%;
+    top: 52px;
+    left: 10%;
+    width: 80%;
     height: 4px;
     background-color: var(--color-teal);
     z-index: 1;
 }
 
 .timeline-items {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     position: relative;
     z-index: 2;
 }
@@ -57,7 +63,7 @@
 
 .timeline-year {
     font-family: var(--font-heading);
-    color: var(--color-teal);
+    color: #ffffff;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
@@ -74,29 +80,33 @@
     font-family: var(--font-body);
     font-size: 1rem;
     opacity: 0.8;
+    color: #ffffff;
 }
 
 @media (max-width: 900px) {
     .timeline-items {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+        flex-direction: column;
     }
 
     .timeline-line {
         top: 0;
-        left: 50px;
+        left: 50%;
+        margin-left: -2px;
+        /* Center the 4px vertical line */
         width: 4px;
         height: 100%;
+        z-index: 1;
     }
 
     .timeline-item {
-        flex-direction: row;
-        text-align: left;
+        flex-direction: column;
+        text-align: center;
     }
 
     .timeline-node {
-        margin: 0;
-        margin-right: 2rem;
-        margin-left: 40px;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 2;
     }
 }

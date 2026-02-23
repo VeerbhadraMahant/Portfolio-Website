@@ -1,5 +1,9 @@
 .work-section {
     background-color: var(--color-red);
+    background-image: url('../../assets/Fin_Vec_6.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color-cream);
 }
 
@@ -11,6 +15,7 @@
 .work-title {
     color: var(--color-mustard);
     align-self: flex-start;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4), -1px -1px 0 rgba(0, 0, 0, 0.4), 1px -1px 0 rgba(0, 0, 0, 0.4), -1px 1px 0 rgba(0, 0, 0, 0.4);
 }
 
 .projects-grid {

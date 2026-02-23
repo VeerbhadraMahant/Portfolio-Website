@@ -1,6 +1,5 @@
 import React from 'react';
 import './Contact.css';
-
 const Contact = () => {
     return (
         <section id="contact" className="contact-section">
@@ -16,15 +15,15 @@ const Contact = () => {
 
                 <div className="contact-content">
                     <div className="contact-links">
-                        <a href="mailto:hello@example.com" className="contact-link">
-                            hello@example.com
+                        <a href="mailto:[EMAIL_ADDRESS]" className="contact-link">
+                            EMAIL
                             <span className="link-arrow">→</span>
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact-link">
+                        <a href="https://www.linkedin.com/in/veerbhadramahant/" target="_blank" rel="noopener noreferrer" className="contact-link">
                             LinkedIn
                             <span className="link-arrow">→</span>
                         </a>
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="contact-link">
+                        <a href="https://github.com/VeerbhadraMahant" target="_blank" rel="noopener noreferrer" className="contact-link">
                             GitHub
                             <span className="link-arrow">→</span>
                         </a>
@@ -52,7 +51,7 @@ const Contact = () => {
             </div>
 
             <footer className="footer">
-                <p>© {new Date().getFullYear()} John Doe. Designed & Built manually.</p>
+                <p>© {new Date().getFullYear()} Veerbhadra Mahant. Designed & Built using React and Nodejs.</p>
             </footer>
         </section>
     );

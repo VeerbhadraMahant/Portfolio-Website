@@ -2,9 +2,7 @@ import React from 'react';
 import './Experience.css';
 
 const experiences = [
-    { year: '2023 - Present', role: 'Senior Designer', company: 'Studio Geometric' },
-    { year: '2020 - 2023', role: 'Frontend Developer', company: 'Digital Form' },
-    { year: '2018 - 2020', role: 'UI/UX Intern', company: 'Creative Agency' }
+    { year: 'October 2025 - Present', role: 'AI Intern', company: 'BHSSYEN Pvt. Ltd' }
 ];
 
 const Experience = () => {

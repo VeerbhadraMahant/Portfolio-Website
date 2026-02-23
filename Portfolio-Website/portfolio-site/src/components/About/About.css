@@ -1,5 +1,9 @@
 .about-section {
     background-color: var(--color-cream);
+    background-image: url('../../assets/vangogh1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color-navy);
 }
 
@@ -45,12 +49,18 @@
 }
 
 .about-content {
-    padding-left: 2rem;
+    background-color: var(--color-navy);
+    padding: 2.5rem;
+    border: 2px solid var(--color-red);
+    box-shadow: 6px 6px 0 var(--color-mustard);
+    color: var(--color-cream);
+    display: flex;
+    flex-direction: column;
 }
 
 .section-title {
     font-size: 4rem;
-    color: var(--color-navy);
+    color: var(--color-cream);
     margin-bottom: 2rem;
     position: relative;
     display: inline-block;
@@ -80,8 +90,13 @@
 
 .skills-title {
     font-size: 1.5rem;
-    color: var(--color-green);
-    margin-bottom: 1rem;
+    color: var(--color-cream);
+    margin-bottom: 2rem;
+    background-color: var(--color-navy);
+    padding: 1rem 2rem;
+    border: 2px solid var(--color-red);
+    box-shadow: 6px 6px 0 var(--color-mustard);
+    display: inline-block;
 }
 
 .skills-grid-container {
@@ -91,14 +106,25 @@
     margin-top: 2rem;
 }
 
+.skill-category {
+    background-color: var(--color-navy);
+    padding: 1.5rem;
+    border: 2px solid var(--color-red);
+    box-shadow: 4px 4px 0 var(--color-mustard);
+    color: var(--color-cream);
+    display: flex;
+    flex-direction: column;
+}
+
 .skill-category h4 {
     font-family: var(--font-heading);
-    color: var(--color-navy);
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--color-mustard);
+    color: var(--color-mustard);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-cream);
     padding-bottom: 0.5rem;
-    display: inline-block;
+    display: block;
+    text-align: center;
 }
 
 .skills-list {
