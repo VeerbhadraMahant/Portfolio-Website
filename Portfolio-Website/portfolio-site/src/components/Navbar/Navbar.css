@@ -46,7 +46,8 @@
     align-items: center;
 }
 
-.nav-links button {
+.nav-links button,
+.nav-links a.nav-resume-link {
     background: none;
     border: none;
     font-family: var(--font-heading);
@@ -61,11 +62,13 @@
     transition: color 0.3s ease;
 }
 
-.nav-scrolled .nav-links button {
+.nav-scrolled .nav-links button,
+.nav-scrolled .nav-links a.nav-resume-link {
     color: var(--color-navy);
 }
 
-.nav-links button::after {
+.nav-links button::after,
+.nav-links a.nav-resume-link::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -78,11 +81,13 @@
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.nav-scrolled .nav-links button::after {
+.nav-scrolled .nav-links button::after,
+.nav-scrolled .nav-links a.nav-resume-link::after {
     background-color: var(--color-navy);
 }
 
-.nav-links button:hover::after {
+.nav-links button:hover::after,
+.nav-links a.nav-resume-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
 }
@@ -177,11 +182,13 @@
         right: 0;
     }
 
-    .nav-links button {
+    .nav-links button,
+    .nav-links a.nav-resume-link {
         font-size: 1.5rem;
     }
 
-    .nav-scrolled .nav-links button {
+    .nav-scrolled .nav-links button,
+    .nav-scrolled .nav-links a.nav-resume-link {
         color: #ffffff;
         /* Keep links white inside the navy mobile menu */
     }

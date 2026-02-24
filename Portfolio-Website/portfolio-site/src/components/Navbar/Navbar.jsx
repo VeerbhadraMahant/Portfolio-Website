@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
+import resumePdf from '../../assets/Veerbhadra_Mahant_Professional_Resume.pdf';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -50,6 +51,11 @@ const Navbar = () => {
           <li><button onClick={() => scrollToSection('about')}>About</button></li>
           <li><button onClick={() => scrollToSection('work')}>Work</button></li>
           <li><button onClick={() => scrollToSection('experience')}>Experience</button></li>
+          <li>
+            <a href={resumePdf} target="_blank" rel="noopener noreferrer" className="nav-resume-link">
+              Resume
+            </a>
+          </li>
           <li><button className="btn-contact" onClick={() => scrollToSection('contact')}>Contact</button></li>
         </ul>
       </div>
