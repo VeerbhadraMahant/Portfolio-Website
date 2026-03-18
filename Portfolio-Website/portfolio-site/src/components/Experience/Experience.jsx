@@ -2,7 +2,7 @@ import React from 'react';
 import './Experience.css';
 
 const experiences = [
-    { year: 'October 2025 - Present', role: 'AI Intern', company: 'BHSSYEN Pvt. Ltd' }
+    { year: 'October 2025 - March 2026', role: 'AI Intern', company: 'BHSSYEN Pvt. Ltd' }
 ];
 
 const Experience = () => {
