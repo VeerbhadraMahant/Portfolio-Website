@@ -12,10 +12,10 @@ const Contact = () => {
         setSubmitMessage('');
 
         emailjs.sendForm(
-            'service_al4n05w', // Replace with your EmailJS Service ID
-            'template_dsbicuh', // Replace with your EmailJS Template ID
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
             form.current,
-            'bV7bRgDIlUNxbW6r5' // Replace with your EmailJS Public Key
+            import.meta.env.VITE_EMAILJS_PUBLIC_KEY
         )
             .then((result) => {
                 setSubmitMessage('Message sent successfully!');

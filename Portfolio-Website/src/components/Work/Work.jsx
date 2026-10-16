@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Work.css';
+import projects from '../../data/projects';
 
 const Work = () => {
     const navigate = useNavigate();
@@ -95,32 +96,6 @@ const Work = () => {
         }, 500);
     };
 
-    const projects = [
-        {
-            title: "Predictive Analytics Engine(In Development)",
-            desc: "A scalable ML pipeline for forecasting user retention.",
-            color: "var(--color-navy)",
-            link: "/project/predictive-analytics"
-        },
-        {
-            title: "Lead extraction tool",
-            desc: "An automated lead generation tool that searches Google for corporate training opportunities, extracts contact information, and stores qualified leads in Excel with email alerts..",
-            color: "var(--color-green)",
-            link: "/project/lead-extraction"
-        },
-        {
-            title: "ML Based Radiology Assistant(In Development)",
-            desc: "AI-powered assistant for automated radiographic image analysis.",
-            color: "var(--color-teal)",
-            link: "/project/ml-radiology-assistant"
-        },
-        {
-            title: "ML Based Stock market analytics dashboard",
-            desc: "Predictive analytics and visualization platform for equity markets.",
-            color: "var(--color-red)",
-            link: "/project/ml-stock-analytics"
-        }
-    ];
 
     return (
         <section id="work" className="work-section">
@@ -136,7 +111,7 @@ const Work = () => {
                             key={index}
                             className="project-card"
                             style={{ backgroundColor: project.color }}
-                            onClick={(e) => handleProjectClick(project.link, project.color, index, e)}
+                            onClick={(e) => handleProjectClick(`/project/${project.id}`, project.color, index, e)}
                         >
                             <div className="project-content">
                                 <h3>{project.title}</h3>
