@@ -1,6 +1,6 @@
 # Design system: Bauhaus colour blocks
 
-A clean, confident page of flat geometric shapes on warm paper. Squares, circles, quarter and half circles, and bars in four block colours; each project owns one colour. No imagery, no texture, no effects: the shapes and the type carry the design.
+A clean, confident page of flat geometric shapes on warm paper. Squares, circles, quarter and half circles, and bars in four block colours; each project owns one colour. The shapes and the type carry the design; four quiet WebGL backgrounds sit behind the Hero, Work, Experience and Recognition sections.
 
 ## Colour
 
@@ -34,6 +34,9 @@ White text on each of the four block colours passes WCAG AA for body text. Light
 - Recognition tile: filled sun circle for first prize, outlined ink circle for finalist.
 - Skills: group name with a small shape (cycling colours), static hairline chips, education block on paper-2.
 - Contact: full-bleed navy footer; a sun quarter circle and a red circle sit at the edges, clear of the text.
+- Cursor: a native CSS cursor image set in an inline `<style>` in `index.html`, so it is yellow from first paint with no JavaScript and no lag. A 27px `--sun` circle with a 1.5px ink ring (hotspot centred); over `a`, `button`, `summary`, `label` and `[role=button]` it becomes a 48px circle. Only under `(hover: hover) and (pointer: fine)`; touch keeps the normal behaviour.
+- Scrollbar: hidden on all browsers (`scrollbar-width: none`, `::-webkit-scrollbar { display: none }`); the page scrolls as normal.
+- Section backgrounds (React Bits by David Haz, MIT + Commons Clause, in `src/components/backgrounds/`): each section always shows its own, they never swap. Hero: Particles (navy, green, teal, red, 110 sparse slow dots). Work: Pattern Waves (paper base, soft ink dots at 25% opacity). Experience: Line Waves (navy, teal, green lines at 55% opacity, slow). Recognition: Gradient ASCII (light mode, navy/paper/paper-2/teal, 30% gradient, 50% glyphs). Skills, the ticker and the contact footer have none. `SectionBg` renders each one `position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; aria-hidden` inside a `position: relative; isolation: isolate` section whose content sits at z-index 1; the section's own padding and layout are untouched.
 - Buttons: 44px minimum height, 2px border, 4px radius, press scale 0.97. Hover only inside `(hover: hover) and (pointer: fine)`. Focus ring 3px, offset 3px: ink on paper, white on colour blocks.
 
 ## Motion
@@ -42,18 +45,20 @@ The flat shapes behave like toys that answer the visitor. Content stays the focu
 
 - Hero name: letters drop in from -0.4em with a small overshoot, 30ms stagger (the h1 carries `aria-label`, letters are `aria-hidden`). Hovering a letter hops it and tints it navy, green, teal or red by index.
 - Hero portrait: rises in, then the sun circle and red quarter drift up to 14px toward the pointer and the offset block moves 8px the opposite way. Clicking the photo cycles the block colour (250ms) with a press squash.
-- Ticker: a full-bleed ink band of outcome facts scrolls left, 40s per loop, with a Pause/Play button (WCAG 2.2.2) and pause on hover. The duplicate track is `aria-hidden`.
+- Ticker: a full-bleed ink band of outcome facts scrolls left, 40s per loop, and pauses on hover. There is no Pause/Play button. The duplicate track is `aria-hidden`.
 - Project cards and recognition tiles lift 4px with a flat 6px ink offset shadow (a print shadow, no blur). Each card mark moves by shape: square turns 90deg, circle pops, quarter turns 180deg, half flips. The "How it works" plus turns into a cross, and opened details fade and slide 6px.
 - First-prize sun circles breathe (scale 1 to 1.08, 3s) only while on screen.
 - Skill chips fill with their group colour and pop with a spring curve; group shapes spin 90deg.
 - Copy email: the one celebration, a burst of 11 flat shapes flying 40-90px and fading in 700ms.
 - Contact footer shapes drift up to 16px with the pointer.
 
-Hover and drift effects apply only inside `(hover: hover) and (pointer: fine)`; touch users keep press (`:active`) and focus states. Under `prefers-reduced-motion: reduce` everything rests in its final state: no letter entrance, drift, breathe or burst, and the ticker becomes a static wrapped row without a button. Smooth scrolling is also gated on no-preference.
+Backgrounds follow these performance rules: loaded with `React.lazy`, mounted once when their section comes within 300px of the viewport and never unmounted; devicePixelRatio capped at 1.5 inside each component; resize through ResizeObserver; each one pauses when offscreen or when the tab is hidden; pointer and click interaction is removed (no window listeners). Under `prefers-reduced-motion: reduce` they render a still frame.
+
+Hover and drift effects apply only inside `(hover: hover) and (pointer: fine)`; touch users keep press (`:active`) and focus states. Under `prefers-reduced-motion: reduce` everything rests in its final state: no letter entrance, drift, breathe or burst, and the ticker becomes a static wrapped row. Smooth scrolling is also gated on no-preference.
 
 ## Rules
 
 - All facts come from `src/data/content.js` (the resume). No invented testimonials, screenshots or metrics.
-- No gradients, glass or blur, no shadows other than the flat hard offset shadow on lifted cards and tiles, no section numbers, no emoji.
+- No glass or blur and no shadows other than the flat hard offset shadow on lifted cards and tiles. Gradients and texture appear only inside the four section backgrounds, which are user-requested and stay quiet so text keeps WCAG AA contrast. No section numbers, no emoji.
 - `--sun` never sits behind text. Decorative shapes are `aria-hidden` and never overlap copy.
 - Project colours are assigned by index in `App.jsx`, not stored in content.

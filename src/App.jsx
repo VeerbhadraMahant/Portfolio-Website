@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, useEffect, useRef, useState } from 'react'
 import {
   person,
   projects,
@@ -9,6 +9,15 @@ import {
   education,
 } from './data/content.js'
 import portrait from './assets/portrait.webp'
+import SectionBg from './components/SectionBg.jsx'
+
+const Particles = lazy(() => import('./components/backgrounds/Particles/Particles.jsx'))
+const PatternWaves = lazy(() => import('./components/backgrounds/PatternWaves/PatternWaves.jsx'))
+const LineWaves = lazy(() => import('./components/backgrounds/LineWaves/LineWaves.jsx'))
+const GradientASCII = lazy(() => import('./components/backgrounds/GradientASCII/GradientASCII.jsx'))
+
+// Hex because the WebGL components parse it; values match the tokens in styles.css.
+const INK = { navy: '#1e2a5a', green: '#1f6b4f', teal: '#17707a', red: '#b83a28', paper: '#f3efe6', paper2: '#e9e3d6' }
 
 const NAV = [
   ['Work', '#work'],
@@ -165,7 +174,20 @@ function Hero() {
   useDrift(ref)
   let n = 0
   return (
-    <section className="hero" id="top" ref={ref}>
+    <section className="hero has-bg" id="top" ref={ref}>
+      <SectionBg
+        as={Particles}
+        moveParticlesOnHover={false}
+        clickBurst={false}
+        hoverEffect="none"
+        glow={0}
+        twinkle={0}
+        particleColors={[INK.navy, INK.green, INK.teal, INK.red]}
+        particleCount={160}
+        particleBaseSize={300}
+        speed={0.05}
+        opacity={1}
+      />
       <div className="wrap hero-grid">
         <div className="hero-body">
           <h1 className="name" aria-label={person.name.join(' ')}>
@@ -199,7 +221,6 @@ function Hero() {
 }
 
 function Ticker() {
-  const [paused, setPaused] = useState(false)
   const items = (copy) =>
     FACTS.map((t, i) => (
       <li key={`${copy}-${i}`}>
@@ -208,7 +229,7 @@ function Ticker() {
       </li>
     ))
   return (
-    <section className={`ticker${paused ? ' paused' : ''}`} aria-label="Highlights">
+    <section className="ticker" aria-label="Highlights">
       <div className="ticker-view">
         <div className="ticker-track">
           <ul className="ticker-list">{items('a')}</ul>
@@ -217,21 +238,14 @@ function Ticker() {
           </ul>
         </div>
       </div>
-      <button
-        type="button"
-        className="ticker-btn"
-        aria-label={paused ? 'Play the ticker' : 'Pause the ticker'}
-        onClick={() => setPaused((v) => !v)}
-      >
-        {paused ? 'Play' : 'Pause'}
-      </button>
     </section>
   )
 }
 
 function Work() {
   return (
-    <section className="section" id="work" aria-labelledby="work-h">
+    <section className="section has-bg" id="work" aria-labelledby="work-h">
+      <SectionBg as={PatternWaves} interactive={false} backgroundColor={INK.paper} color="#3a372f" opacity={0.5} fade="none" />
       <div className="wrap">
         <h2 id="work-h" className="title">
           Selected work
@@ -276,7 +290,18 @@ function Work() {
 function Experience() {
   const roles = [...experience, ...leadership]
   return (
-    <section className="section" id="experience" aria-labelledby="exp-h">
+    <section className="section has-bg" id="experience" aria-labelledby="exp-h">
+      <SectionBg
+        as={LineWaves}
+        enableMouseInteraction={false}
+        clickRipple={false}
+        lightMode
+        color1={INK.navy}
+        color2={INK.teal}
+        color3={INK.green}
+        speed={0.12}
+        opacity={0.4}
+      />
       <div className="wrap">
         <h2 id="exp-h" className="title">
           Internship and leadership
@@ -317,10 +342,20 @@ function Recognition() {
     return () => io.disconnect()
   }, [])
   return (
-    <section className="section" id="recognition" aria-labelledby="rec-h">
+    <section className="section has-bg" id="recognition" aria-labelledby="rec-h">
+      <SectionBg
+        as={GradientASCII}
+        mouseInteraction={false}
+        clickEffect="none"
+        lightMode
+        colors={[INK.navy, INK.teal, INK.paper2, INK.teal]}
+        speed={0.4}
+        gradientOpacity={0.55}
+        glyphOpacity={0.9}
+      />
       <div className="wrap">
         <h2 id="rec-h" className="title">
-          Hackathon results
+          Activities
         </h2>
         <ul className="wins" ref={ref}>
           {recognition.map((r) => {
