@@ -7,18 +7,18 @@ related_targets: []
 
 # Portfolio home (index.html)
 
-Mode: Experience. Visitor: recruiter or engineering manager skimming under a minute; peers. Job: believe that this person ships measurable systems, then open a repository or email. Playfulness is welcome but never blocks the content.
+Mode: Experience. Visitor: recruiter or engineering manager skimming under a minute; peers. Job: believe that this person ships measurable systems, then open a repository or email. Clarity first; nothing blocks the content.
 
 ## Direction contract
 
-THESIS: The page is a living Starry Night sky the visitor can stir, paint on and play with; the work is four stars in a constellation. It refuses the template of a name over a tagline above a grid of equal project cards.
+THESIS: The page is a clean Bauhaus colour-block layout: flat geometric shapes on warm paper, one colour per project. It refuses the template of a name over a tagline above a grid of equal project cards.
 
-OWN-WORLD: Fixed canvas of thousands of impasto brush strokes following swirling vortices, cobalt and ultramarine with chrome-yellow star halos, a crescent moon that toggles sunrise, a dark cypress at left. Content sits on #0D1D45 patches with hand-roughened edges. Bricolage Grotesque for type, Caveat for hand-written hints.
+OWN-WORLD: Warm off-white paper, flat squares, circles, quarter and half circles in navy, green, teal and red with small sun-yellow accents. Bricolage Grotesque for all type.
 
-STORY: Visitor lands in the sky, reads the name and what is shipped, plays connect-the-stars through four projects with measured results, reads the internship and leadership, hackathon wins, dabs paint with tools, and leaves through the footer gate with email, GitHub, LinkedIn and resume.
+STORY: Visitor lands on the name and a composed tile grid, reads what is shipped through four colour-block project cards, then the internship and leadership, hackathon results and tools, and leaves through the navy footer with email, GitHub, LinkedIn and resume.
 
-FIRST VIEWPORT: Full-viewport painted sky; name in huge Bricolage 800 lower left over a scrim, one plain sentence, two actions (See the work, Paint a star), a Caveat hint line with a star counter; cypress at far left, moon button top right, nav rail across the top.
+FIRST VIEWPORT: Name in huge Bricolage 800 on two lines, one plain sentence, two actions (See the work, Download resume), and a 3x3 tile composition on the right; sticky nav bar across the top.
 
-FORM: Pinned by the user ("Starry Night, artistic and abstract, with fun, interactable, playable elements"), so no roll: seed: none (pinned). Entrance motion: the name is painted on once.
+FORM: Pinned by the user (abstract Bauhaus colour blocks, clean and confident), so no roll: seed: none (pinned). Entrance motion: the hero tiles stagger in once.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

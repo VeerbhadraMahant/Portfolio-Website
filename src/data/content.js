@@ -15,11 +15,9 @@ export const person = {
   resume: '/Veerbhadra_Mahant_Resume.pdf',
 }
 
-// star: position (percent) of the project's star on the constellation map
 export const projects = [
   {
     id: 'loanloop',
-    star: { x: 18, y: 42 },
     headline: 'p95 33 ms at 1,000 concurrent calls',
     name: 'Loanloop',
     subtitle: 'Secure voice service desk for a lender',
@@ -34,7 +32,6 @@ export const projects = [
   },
   {
     id: 'fee-nance',
-    star: { x: 42, y: 14 },
     headline: '54 endpoints, 31 SQL functions',
     name: 'Fee-nance',
     subtitle: 'Personal finance and group bill splitting',
@@ -49,7 +46,6 @@ export const projects = [
   },
   {
     id: 'matrusetu',
-    star: { x: 64, y: 56 },
     headline: '170+ tests, end-to-end in CI',
     name: 'Matrusetu',
     subtitle: 'Clinic software suite for OB-GYN practices',
@@ -64,7 +60,6 @@ export const projects = [
   },
   {
     id: 'freightsight',
-    star: { x: 82, y: 26 },
     headline: 'Costs nothing when idle',
     name: 'Freightsight',
     subtitle: 'Freight forecasting and live vessel tracking',

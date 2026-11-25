@@ -28,7 +28,7 @@ Resume (D:\Bhadra Stuff\Documents\Resume\VeerbhadraMahant_Resume_1.pdf) is the s
 - Resume PDF download stays available.
 - The site must work with keyboard and reduced motion, and on a 390 px phone.
 - Phone number is on the resume but is not published on the site.
-- Design direction: Starry Night, artistic and playful (user-pinned).
+- Design direction: abstract Bauhaus colour blocks, clean and confident (user-pinned).
 
 ## Brand Commitments
 

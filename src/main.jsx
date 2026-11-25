@@ -5,7 +5,6 @@ import '@fontsource/bricolage-grotesque/500.css'
 import '@fontsource/bricolage-grotesque/600.css'
 import '@fontsource/bricolage-grotesque/700.css'
 import '@fontsource/bricolage-grotesque/800.css'
-import '@fontsource/caveat/600.css'
 import './styles.css'
 import App from './App.jsx'
 
