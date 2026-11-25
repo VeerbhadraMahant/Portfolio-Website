@@ -29,6 +29,15 @@
   }
 }
 
+/* The page still scrolls; the bar is hidden. */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -531,37 +540,9 @@ footer[id] {
   stroke-width: 6;
 }
 
-.ticker-btn {
-  flex: none;
-  min-width: 5.5rem;
-  min-height: 44px;
-  padding: 0 1rem;
-  border: 0;
-  border-left: 2px solid var(--paper);
-  background: var(--ink);
-  color: var(--paper);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.ticker-btn:focus-visible {
-  outline-color: var(--paper);
-  outline-offset: -6px;
-}
-
-.ticker-btn:active {
-  background: var(--paper);
-  color: var(--ink);
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .ticker-track {
     animation: ticker 40s linear infinite;
-  }
-
-  .ticker.paused .ticker-track {
-    animation-play-state: paused;
   }
 
   @keyframes ticker {
@@ -578,7 +559,6 @@ footer[id] {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ticker-btn,
   .ticker-list[aria-hidden='true'] {
     display: none;
   }
@@ -1184,4 +1164,85 @@ footer[id] {
   .card summary:active {
     transform: none;
   }
+}
+
+/* Section backgrounds (React Bits): absolute inside their own section, behind the content. */
+.has-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.has-bg > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.sec-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Custom cursor: a dot on the pointer, only for mouse-like devices. */
+.cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2147483647;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    background: var(--sun);
+    pointer-events: none;
+    opacity: 0;
+    scale: 1;
+    transition:
+      scale 150ms var(--ease),
+      opacity 150ms linear;
+  }
+
+  .cursor.on {
+    opacity: 1;
+  }
+
+  .cursor.hot {
+    scale: 1.8;
+  }
+
+  .cursor.down {
+    scale: 0.8;
+  }
+
+  .cursor.hot.down {
+    scale: 1.5;
+  }
+
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    transition: none;
+  }
+}
+
+/* Keep the lines lighter behind the text column of Experience. */
+#experience .sec-bg {
+  mask-image: linear-gradient(90deg, #000 0, rgba(0, 0, 0, 0.45) 22%, rgba(0, 0, 0, 0.45) 78%, #000 100%);
+}
+
+#recognition .sec-bg {
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 18%, #000 40%);
 }
