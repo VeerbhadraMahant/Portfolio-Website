@@ -8,6 +8,7 @@ import {
   skills,
   education,
 } from './data/content.js'
+import portrait from './assets/portrait.webp'
 
 const NAV = [
   ['Work', '#work'],
@@ -31,29 +32,20 @@ function Shape({ kind, className }) {
   )
 }
 
-const TILES = [
-  { x: 0, y: 0, fill: 'var(--navy)', el: <rect width="100" height="100" /> },
-  { x: 100, y: 0, fill: 'var(--sun)', el: <circle cx="50" cy="50" r="38" /> },
-  { x: 200, y: 0, fill: 'var(--red)', el: <path d="M0 0H100A100 100 0 0 1 0 100Z" /> },
-  { x: 0, y: 100, fill: 'var(--green)', el: <path d="M0 100A50 50 0 0 1 100 100Z" /> },
-  { x: 100, y: 100, fill: 'var(--teal)', el: <rect width="100" height="100" /> },
-  { x: 200, y: 100, fill: 'var(--ink)', el: <rect y="44" width="100" height="12" /> },
-  { x: 100, y: 200, fill: 'var(--red)', el: <circle cx="50" cy="50" r="50" /> },
-  { x: 200, y: 200, fill: 'var(--green)', el: <path d="M100 100H0A100 100 0 0 1 100 0Z" /> },
-]
-
-function HeroArt() {
+function HeroPortrait() {
   return (
-    <svg className="hero-art" viewBox="0 0 300 300" aria-hidden="true" focusable="false">
-      <rect width="300" height="300" fill="var(--paper-2)" />
-      {TILES.map((t, i) => (
-        <g key={i} transform={`translate(${t.x} ${t.y})`}>
-          <g className="tile" style={{ '--i': i, fill: t.fill }}>
-            {t.el}
-          </g>
-        </g>
-      ))}
-    </svg>
+    <figure className="portrait">
+      <span className="portrait-block" aria-hidden="true" />
+      <img
+        className="portrait-img"
+        src={portrait}
+        width="720"
+        height="1280"
+        alt="Veerbhadra Mahant smiling, with a flower arrangement balanced on his head"
+      />
+      <Shape kind="circle" className="portrait-shape portrait-sun" />
+      <Shape kind="quarter" className="portrait-shape portrait-quarter" />
+    </figure>
   )
 }
 
@@ -136,7 +128,7 @@ function Hero() {
             </a>
           </div>
         </div>
-        <HeroArt />
+        <HeroPortrait />
       </div>
     </section>
   )

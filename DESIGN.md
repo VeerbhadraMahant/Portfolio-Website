@@ -38,7 +38,7 @@ White text on each of the four block colours passes WCAG AA for body text. Light
 
 ## Motion
 
-One authored moment on load: the hero tiles scale from 0.6 and fade in, 450ms, `cubic-bezier(0.23, 1, 0.32, 1)`, 60ms stagger. It runs only under `prefers-reduced-motion: no-preference`, as does smooth scrolling. Everything else is small hover and press transitions.
+One authored moment on load: the hero portrait and its navy block rise 12px and fade in (500ms), then the sun circle and red quarter circle scale from 0.6 (450ms), all on `cubic-bezier(0.23, 1, 0.32, 1)`. The portrait is the owner's full, uncropped photo in a 6px ink frame on an offset navy block. It runs only under `prefers-reduced-motion: no-preference`, as does smooth scrolling. Everything else is small hover and press transitions.
 
 ## Rules
 

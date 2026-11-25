@@ -325,27 +325,77 @@ footer[id] {
   margin-top: 2rem;
 }
 
-.hero-art {
-  display: block;
-  width: 100%;
-  max-width: 30rem;
-  height: auto;
-  aspect-ratio: 1;
+/* Portrait: ink-framed photo on an offset navy block, with flat shapes on two corners. */
+.portrait {
+  --offset: clamp(0.75rem, 2.5vw, 1.25rem);
+  position: relative;
+  width: min(calc(100% - 3.5rem), 19rem);
+  margin: 1.5rem auto calc(var(--offset) + 1rem);
   justify-self: center;
 }
 
-.tile {
-  transform-box: fill-box;
-  transform-origin: center;
+.portrait-block {
+  position: absolute;
+  inset: var(--offset) calc(var(--offset) * -1) calc(var(--offset) * -1) var(--offset);
+  background: var(--navy);
+}
+
+.portrait-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  border: 6px solid var(--ink);
+  background: var(--paper-2);
+}
+
+.portrait-shape {
+  position: absolute;
+  z-index: 1;
+}
+
+.portrait-sun {
+  top: -1.5rem;
+  right: -1.75rem;
+  width: 28%;
+  fill: var(--sun);
+}
+
+.portrait-quarter {
+  bottom: -1.75rem;
+  left: -1.75rem;
+  width: 32%;
+  fill: var(--red);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .tile {
-    animation: tile-in 450ms var(--ease) both;
-    animation-delay: calc(var(--i) * 60ms);
+  .portrait-img,
+  .portrait-block {
+    animation: portrait-in 500ms var(--ease) both;
   }
 
-  @keyframes tile-in {
+  .portrait-block {
+    animation-delay: 80ms;
+  }
+
+  .portrait-shape {
+    animation: shape-in 450ms var(--ease) both;
+    animation-delay: 260ms;
+  }
+
+  .portrait-quarter {
+    animation-delay: 340ms;
+  }
+
+  @keyframes portrait-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  @keyframes shape-in {
     from {
       opacity: 0;
       transform: scale(0.6);
@@ -359,8 +409,8 @@ footer[id] {
     gap: 3rem;
   }
 
-  .hero-art {
-    max-width: none;
+  .portrait {
+    margin-block: 1.5rem calc(var(--offset) + 1.5rem);
   }
 }
 

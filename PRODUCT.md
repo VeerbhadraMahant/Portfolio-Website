@@ -32,7 +32,7 @@ Resume (D:\Bhadra Stuff\Documents\Resume\VeerbhadraMahant_Resume_1.pdf) is the s
 
 ## Brand Commitments
 
-Name: Veerbhadra Mahant. Domain: veerbhadra-mahant.me. No avatar or photograph has been supplied; none is invented.
+Name: Veerbhadra Mahant. Domain: veerbhadra-mahant.me. One portrait photograph was supplied by the owner (`src/assets/portrait.webp`, shown uncropped in the hero); no other images are invented.
 
 ## Evidence on Hand
 
