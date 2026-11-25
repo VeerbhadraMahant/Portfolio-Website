@@ -9,7 +9,6 @@ import {
   education,
 } from './data/content.js'
 import portrait from './assets/portrait.webp'
-import Cursor from './components/Cursor.jsx'
 import SectionBg from './components/SectionBg.jsx'
 
 const Particles = lazy(() => import('./components/backgrounds/Particles/Particles.jsx'))
@@ -356,7 +355,7 @@ function Recognition() {
       />
       <div className="wrap">
         <h2 id="rec-h" className="title">
-          Hackathon results
+          Activities
         </h2>
         <ul className="wins" ref={ref}>
           {recognition.map((r) => {
@@ -520,7 +519,6 @@ function Contact() {
 export default function App() {
   return (
     <>
-      <Cursor />
       <a className="skip" href="#work">
         Skip to projects
       </a>
