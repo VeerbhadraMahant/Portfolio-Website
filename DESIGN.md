@@ -38,11 +38,22 @@ White text on each of the four block colours passes WCAG AA for body text. Light
 
 ## Motion
 
-One authored moment on load: the hero portrait and its navy block rise 12px and fade in (500ms), then the sun circle and red quarter circle scale from 0.6 (450ms), all on `cubic-bezier(0.23, 1, 0.32, 1)`. The portrait is the owner's full, uncropped photo in a 6px ink frame on an offset navy block. It runs only under `prefers-reduced-motion: no-preference`, as does smooth scrolling. Everything else is small hover and press transitions.
+The flat shapes behave like toys that answer the visitor. Content stays the focus: nothing blocks reading or clicking, and nothing fades in on scroll. Only `transform`, `translate`, `scale`, `rotate`, `opacity` and fill colours animate; micro-interactions run 150-350ms, entrances under 900ms, on `cubic-bezier(0.23, 1, 0.32, 1)` unless noted.
+
+- Hero name: letters drop in from -0.4em with a small overshoot, 30ms stagger (the h1 carries `aria-label`, letters are `aria-hidden`). Hovering a letter hops it and tints it navy, green, teal or red by index.
+- Hero portrait: rises in, then the sun circle and red quarter drift up to 14px toward the pointer and the offset block moves 8px the opposite way. Clicking the photo cycles the block colour (250ms) with a press squash.
+- Ticker: a full-bleed ink band of outcome facts scrolls left, 40s per loop, with a Pause/Play button (WCAG 2.2.2) and pause on hover. The duplicate track is `aria-hidden`.
+- Project cards and recognition tiles lift 4px with a flat 6px ink offset shadow (a print shadow, no blur). Each card mark moves by shape: square turns 90deg, circle pops, quarter turns 180deg, half flips. The "How it works" plus turns into a cross, and opened details fade and slide 6px.
+- First-prize sun circles breathe (scale 1 to 1.08, 3s) only while on screen.
+- Skill chips fill with their group colour and pop with a spring curve; group shapes spin 90deg.
+- Copy email: the one celebration, a burst of 11 flat shapes flying 40-90px and fading in 700ms.
+- Contact footer shapes drift up to 16px with the pointer.
+
+Hover and drift effects apply only inside `(hover: hover) and (pointer: fine)`; touch users keep press (`:active`) and focus states. Under `prefers-reduced-motion: reduce` everything rests in its final state: no letter entrance, drift, breathe or burst, and the ticker becomes a static wrapped row without a button. Smooth scrolling is also gated on no-preference.
 
 ## Rules
 
 - All facts come from `src/data/content.js` (the resume). No invented testimonials, screenshots or metrics.
-- No gradients, glass or blur, no shadows heavier than a 1px hairline, no section numbers, no emoji.
+- No gradients, glass or blur, no shadows other than the flat hard offset shadow on lifted cards and tiles, no section numbers, no emoji.
 - `--sun` never sits behind text. Decorative shapes are `aria-hidden` and never overlap copy.
 - Project colours are assigned by index in `App.jsx`, not stored in content.

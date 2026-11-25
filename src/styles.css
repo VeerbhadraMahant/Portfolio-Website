@@ -310,6 +310,51 @@ footer[id] {
   display: block;
 }
 
+.ch {
+  display: inline-block;
+}
+
+.ch > span {
+  display: inline-block;
+  transition: color 300ms var(--ease);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ch {
+    animation: ch-in 450ms var(--ease) both;
+    animation-delay: calc(var(--i) * 30ms);
+  }
+
+  @keyframes ch-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-0.4em);
+    }
+
+    60% {
+      opacity: 1;
+      transform: translateY(0.05em);
+    }
+
+    100% {
+      transform: none;
+    }
+  }
+
+  @keyframes ch-hop {
+    40% {
+      transform: translateY(-0.12em);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .ch:hover > span {
+      color: var(--c);
+      animation: ch-hop 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  }
+}
+
 .lede {
   max-width: 34rem;
   margin-top: 1.75rem;
@@ -337,7 +382,32 @@ footer[id] {
 .portrait-block {
   position: absolute;
   inset: var(--offset) calc(var(--offset) * -1) calc(var(--offset) * -1) var(--offset);
-  background: var(--navy);
+  background: var(--frame, var(--navy));
+  transition:
+    background-color 250ms,
+    translate 350ms var(--ease);
+}
+
+.portrait-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transition: scale 140ms var(--ease);
+}
+
+.portrait-btn:active {
+  scale: 0.97;
+}
+
+.portrait-btn:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px var(--paper);
 }
 
 .portrait-img {
@@ -403,6 +473,126 @@ footer[id] {
   }
 }
 
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .portrait-sun,
+  .portrait-quarter {
+    translate: calc(var(--mx, 0) * 14px) calc(var(--my, 0) * 14px);
+    transition: translate 350ms var(--ease);
+  }
+
+  .portrait-block {
+    translate: calc(var(--mx, 0) * -8px) calc(var(--my, 0) * -8px);
+  }
+}
+
+/* Ticker */
+
+.ticker {
+  display: flex;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ticker-view {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+}
+
+.ticker-list {
+  display: flex;
+  flex: none;
+}
+
+.ticker-list li {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+  min-height: 44px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.tick-shape {
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  overflow: visible;
+  fill: var(--c);
+  stroke: var(--paper);
+  stroke-width: 6;
+}
+
+.ticker-btn {
+  flex: none;
+  min-width: 5.5rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 0;
+  border-left: 2px solid var(--paper);
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ticker-btn:focus-visible {
+  outline-color: var(--paper);
+  outline-offset: -6px;
+}
+
+.ticker-btn:active {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ticker-track {
+    animation: ticker 40s linear infinite;
+  }
+
+  .ticker.paused .ticker-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes ticker {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-btn,
+  .ticker-list[aria-hidden='true'] {
+    display: none;
+  }
+
+  .ticker-track {
+    width: auto;
+  }
+
+  .ticker-list {
+    flex-wrap: wrap;
+    padding: 0.5rem var(--gutter);
+  }
+}
+
 @media (min-width: 900px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
@@ -464,6 +654,21 @@ footer[id] {
   background: var(--block);
   color: #fff;
   border-radius: 4px;
+  transition:
+    translate 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+.card:focus-within {
+  translate: 0 -4px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    translate: 0 -4px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
 }
 
 .card article {
@@ -480,6 +685,55 @@ footer[id] {
   width: 3rem;
   height: 3rem;
   fill: var(--sun);
+  transition:
+    rotate 300ms var(--ease),
+    scale 300ms var(--ease);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes mark-pop {
+    35% {
+      scale: 1.15 0.9;
+    }
+
+    70% {
+      scale: 0.96 1.04;
+    }
+  }
+
+  .card:focus-within .mark-square {
+    rotate: 90deg;
+  }
+
+  .card:focus-within .mark-circle {
+    animation: mark-pop 400ms var(--ease);
+  }
+
+  .card:focus-within .mark-quarter {
+    rotate: 180deg;
+  }
+
+  .card:focus-within .mark-half {
+    scale: 1 -1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover .mark-square {
+      rotate: 90deg;
+    }
+
+    .card:hover .mark-circle {
+      animation: mark-pop 400ms var(--ease);
+    }
+
+    .card:hover .mark-quarter {
+      rotate: 180deg;
+    }
+
+    .card:hover .mark-half {
+      scale: 1 -1;
+    }
+  }
 }
 
 .card h3 {
@@ -530,10 +784,32 @@ footer[id] {
   content: '+';
   font-size: 1.4rem;
   line-height: 1;
+  transition: rotate 200ms var(--ease);
 }
 
 .card details[open] summary::after {
-  content: '\2212';
+  rotate: 45deg;
+}
+
+.card summary {
+  transition: transform 140ms var(--ease);
+}
+
+.card summary:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card details[open] .details-body {
+    animation: body-in 220ms var(--ease);
+  }
+
+  @keyframes body-in {
+    from {
+      opacity: 0;
+      translate: 0 6px;
+    }
+  }
 }
 
 .card .btn {
@@ -619,6 +895,28 @@ footer[id] {
   padding: clamp(1.4rem, 3vw, 2rem);
   background: var(--paper-2);
   border-radius: 4px;
+  transition:
+    translate 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .win:hover {
+    translate: 0 -4px;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .win.on-screen .win-mark.first {
+    animation: breathe 3s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    50% {
+      scale: 1.08;
+    }
+  }
 }
 
 .win-mark {
@@ -684,6 +982,7 @@ footer[id] {
   width: 1.1rem;
   height: 1.1rem;
   fill: var(--block);
+  transition: rotate 300ms var(--ease);
 }
 
 .skill-chips {
@@ -697,6 +996,26 @@ footer[id] {
   padding: 0.2rem 0.7rem;
   border: 1px solid var(--rule-2);
   border-radius: 2px;
+  transition:
+    scale 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 200ms,
+    border-color 200ms,
+    color 200ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-chips li:hover {
+    background: var(--block);
+    border-color: var(--block);
+    color: #fff;
+    scale: 1.06;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .group:hover .group-mark {
+      rotate: 90deg;
+    }
+  }
 }
 
 .edu {
@@ -789,6 +1108,49 @@ footer[id] {
   border-radius: 50%;
 }
 
+.copy-wrap {
+  position: relative;
+}
+
+.burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2);
+  animation: burst 700ms ease-out forwards;
+}
+
+.piece-circle {
+  border-radius: 50%;
+}
+
+.piece-quarter {
+  border-bottom-left-radius: 100%;
+}
+
+@keyframes burst {
+  to {
+    translate: var(--dx) var(--dy);
+    rotate: var(--rot);
+    opacity: 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .art-sun,
+  .art-red {
+    translate: calc(var(--mx, 0) * 16px) calc(var(--my, 0) * 16px);
+    transition: translate 400ms var(--ease);
+  }
+}
+
 @media (min-width: 900px) {
   .contact {
     padding-block: 7rem;
@@ -805,5 +1167,21 @@ footer[id] {
     bottom: -7rem;
     width: clamp(14rem, 24vw, 22rem);
     height: clamp(14rem, 24vw, 22rem);
+  }
+}
+
+/* Reduced motion: keep the shadow and colour feedback, drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .card:focus-within,
+  .win:hover {
+    translate: none;
+  }
+  .skill-chips li:hover,
+  .portrait-btn:active {
+    scale: none;
+  }
+  .card summary:active {
+    transform: none;
   }
 }
