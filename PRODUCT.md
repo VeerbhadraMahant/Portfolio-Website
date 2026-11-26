@@ -28,11 +28,11 @@ Resume (D:\Bhadra Stuff\Documents\Resume\VeerbhadraMahant_Resume_1.pdf) is the s
 - Resume PDF download stays available.
 - The site must work with keyboard and reduced motion, and on a 390 px phone.
 - Phone number is on the resume but is not published on the site.
-- Design direction: abstract Bauhaus colour blocks, clean and confident (user-pinned).
+- Design direction: illustrated screen-print poster palette taken from the owner's four illustrations (user-pinned).
 
 ## Brand Commitments
 
-Name: Veerbhadra Mahant. Domain: veerbhadra-mahant.me. One portrait photograph was supplied by the owner (`src/assets/portrait.webp`, shown uncropped in the hero); no other images are invented.
+Name: Veerbhadra Mahant. Domain: veerbhadra-mahant.me. Four illustrations supplied by the owner (`src/assets/illustrations/`: flowers in the hero, campus in Experience, crown in Activities, glasses in Contact); no other images are invented.
 
 ## Evidence on Hand
 

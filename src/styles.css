@@ -1,16 +1,23 @@
 :root {
   color-scheme: light;
-  --paper: #f3efe6;
-  --paper-2: #e9e3d6;
-  --ink: #151515;
-  --muted: #55524b;
-  --rule: rgba(21, 21, 21, 0.14);
-  --rule-2: rgba(21, 21, 21, 0.32);
-  --navy: #1e2a5a;
-  --green: #1f6b4f;
-  --teal: #17707a;
-  --red: #b83a28;
-  --sun: #e8b930;
+  --sand: #EDDCB1;
+  --sand-2: #E3CC98;
+  --ink: #26211F;
+  --muted: #5A4A3E;
+  --rule: rgba(38, 33, 31, 0.18);
+  --rule-2: rgba(38, 33, 31, 0.34);
+  --cobalt: #1A577D;
+  --sea: #12485B;
+  --teal: #236D6B;
+  --terracotta: #A6481F;
+  --orange: #CE7735;
+  --ochre: #EFBE78;
+  --brown: #6F4432;
+  --grass: #75A55D;
+  --night: #2B2421;
+  --cream: #F6EBD2;
+  /* Print grain: a tiny feTurbulence tile, rasterised once, laid over each section. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .15 0 0 0 0 .12 0 0 0 0 .1 0 0 0 .9 -.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --max: 72rem;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
@@ -40,7 +47,7 @@ html::-webkit-scrollbar {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--sand);
   color: var(--ink);
   font-family: var(--font);
   font-size: 1.0625rem;
@@ -93,8 +100,16 @@ a {
 }
 
 .card :focus-visible,
-.contact :focus-visible {
-  outline-color: #fff;
+.hero :focus-visible,
+.skills :focus-visible,
+.contact :focus-visible,
+.ticker :focus-visible {
+  outline-color: var(--cream);
+}
+
+::selection {
+  background: var(--terracotta);
+  color: var(--cream);
 }
 
 .skip {
@@ -104,7 +119,7 @@ a {
   z-index: 30;
   padding: 0.6rem 1rem;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--sand);
   border-radius: 4px;
 }
 
@@ -148,33 +163,49 @@ a {
 
 .btn-solid {
   background: var(--ink);
-  color: var(--paper);
+  color: var(--sand);
 }
 
 .btn-light {
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.hero .btn-solid {
+  border-color: var(--cream);
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.hero .btn-line {
+  border-color: var(--cream);
+  color: var(--cream);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .btn-solid:hover {
-    background: var(--paper);
+    background: var(--sand);
     color: var(--ink);
   }
 
-  .btn-line:hover {
-    background: var(--ink);
-    color: var(--paper);
+  .hero .btn-solid:hover {
+    background: var(--ochre);
+    border-color: var(--ochre);
+  }
+
+  .hero .btn-line:hover {
+    background: var(--cream);
+    color: var(--ink);
   }
 
   .card .btn-light:hover {
-    background: #fff;
+    background: var(--cream);
     color: var(--block);
   }
 
   .contact .btn-light:hover {
-    background: #fff;
-    color: var(--navy);
+    background: var(--cream);
+    color: var(--sea);
   }
 }
 
@@ -184,7 +215,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--paper);
+  background: var(--sand);
   border-bottom: 1px solid var(--rule);
 }
 
@@ -248,7 +279,7 @@ a {
   left: 0;
   right: 0;
   padding: 0.5rem var(--gutter) 1rem;
-  background: var(--paper);
+  background: var(--sand);
   border-bottom: 1px solid var(--rule);
 }
 
@@ -302,6 +333,8 @@ footer[id] {
 
 .hero {
   padding-block: clamp(2.5rem, 6vw, 5.5rem);
+  background: var(--cobalt);
+  color: var(--cream);
 }
 
 .hero-grid {
@@ -311,7 +344,7 @@ footer[id] {
 }
 
 .name {
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(3.5rem, 6.4vw, 6rem);
   line-height: 0.92;
 }
 
@@ -367,7 +400,7 @@ footer[id] {
 .lede {
   max-width: 34rem;
   margin-top: 1.75rem;
-  color: var(--muted);
+  color: var(--cream);
   font-size: 1.25rem;
   line-height: 1.5;
 }
@@ -379,11 +412,11 @@ footer[id] {
   margin-top: 2rem;
 }
 
-/* Portrait: ink-framed photo on an offset navy block, with flat shapes on two corners. */
+/* Hero illustration: 3:2 in a 6px ink frame on an offset block, with two flat shapes on the corners. */
 .portrait {
   --offset: clamp(0.75rem, 2.5vw, 1.25rem);
   position: relative;
-  width: min(calc(100% - 3.5rem), 19rem);
+  width: min(calc(100% - var(--offset) - 1rem), 36rem);
   margin: 1.5rem auto calc(var(--offset) + 1rem);
   justify-self: center;
 }
@@ -391,7 +424,7 @@ footer[id] {
 .portrait-block {
   position: absolute;
   inset: var(--offset) calc(var(--offset) * -1) calc(var(--offset) * -1) var(--offset);
-  background: var(--frame, var(--navy));
+  background: var(--frame, var(--terracotta));
   transition:
     background-color 250ms,
     translate 350ms var(--ease);
@@ -414,9 +447,8 @@ footer[id] {
 }
 
 .portrait-btn:focus-visible {
-  outline: 3px solid var(--ink);
+  outline: 3px solid var(--cream);
   outline-offset: 4px;
-  box-shadow: 0 0 0 4px var(--paper);
 }
 
 .portrait-img {
@@ -424,9 +456,9 @@ footer[id] {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 3 / 2;
   border: 6px solid var(--ink);
-  background: var(--paper-2);
+  background: var(--sand-2);
 }
 
 .portrait-shape {
@@ -437,15 +469,15 @@ footer[id] {
 .portrait-sun {
   top: -1.5rem;
   right: -1.75rem;
-  width: 28%;
-  fill: var(--sun);
+  width: 14%;
+  fill: var(--ochre);
 }
 
 .portrait-quarter {
   bottom: -1.75rem;
   left: -1.75rem;
-  width: 32%;
-  fill: var(--red);
+  width: 16%;
+  fill: var(--terracotta);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -499,7 +531,7 @@ footer[id] {
 .ticker {
   display: flex;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--cream);
 }
 
 .ticker-view {
@@ -536,7 +568,7 @@ footer[id] {
   height: 0.9rem;
   overflow: visible;
   fill: var(--c);
-  stroke: var(--paper);
+  stroke: var(--cream);
   stroke-width: 6;
 }
 
@@ -575,7 +607,7 @@ footer[id] {
 
 @media (min-width: 900px) {
   .hero-grid {
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
     gap: 3rem;
   }
 
@@ -588,7 +620,6 @@ footer[id] {
 
 .section {
   padding-block: clamp(3.5rem, 8vw, 6.5rem);
-  border-top: 1px solid var(--rule);
 }
 
 .title {
@@ -632,7 +663,7 @@ footer[id] {
 .card {
   position: relative;
   background: var(--block);
-  color: #fff;
+  color: var(--cream);
   border-radius: 4px;
   transition:
     translate 200ms ease-out,
@@ -664,7 +695,7 @@ footer[id] {
   right: 1.25rem;
   width: 3rem;
   height: 3rem;
-  fill: var(--sun);
+  fill: var(--ochre);
   transition:
     rotate 300ms var(--ease),
     scale 300ms var(--ease);
@@ -743,7 +774,7 @@ footer[id] {
 .card details {
   margin-top: auto;
   margin-bottom: 1.25rem;
-  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  border-top: 2px solid rgba(246, 235, 210, 0.45);
 }
 
 .card summary {
@@ -806,7 +837,7 @@ footer[id] {
 
 .chips li {
   padding: 0.2rem 0.65rem;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--cream);
   border-radius: 2px;
   font-size: 0.9rem;
   line-height: 1.5;
@@ -856,6 +887,34 @@ footer[id] {
   margin-top: 0.25rem;
 }
 
+.plate {
+  --o: clamp(0.6rem, 1.6vw, 0.9rem);
+  margin: 0 var(--o) var(--o) 0;
+  border: 6px solid var(--ink);
+  background: var(--sand-2);
+  box-shadow: var(--o) var(--o) 0 var(--plate-shadow, var(--ink));
+  line-height: 0;
+}
+
+.plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+}
+
+.exp-grid,
+.rec-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.exp-grid .rows,
+.rec-grid .wins {
+  margin-top: 0;
+}
+
 @media (min-width: 760px) {
   .row {
     grid-template-columns: 14rem 1fr;
@@ -863,7 +922,44 @@ footer[id] {
   }
 }
 
+@media (min-width: 1000px) {
+  .exp-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .exp-grid .rows {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .plate-exp {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .exp-grid .row {
+    grid-template-columns: 8.5rem 1fr;
+    gap: 1.5rem;
+  }
+}
+
 /* Recognition */
+
+#recognition {
+  background: var(--ochre);
+}
+
+@media (min-width: 1000px) {
+  .rec-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 3rem;
+    align-items: start;
+  }
+}
 
 .wins {
   display: grid;
@@ -873,7 +969,7 @@ footer[id] {
 
 .win {
   padding: clamp(1.4rem, 3vw, 2rem);
-  background: var(--paper-2);
+  background: var(--sand-2);
   border-radius: 4px;
   transition:
     translate 200ms ease-out,
@@ -909,7 +1005,7 @@ footer[id] {
 }
 
 .win-mark.first {
-  fill: var(--sun);
+  fill: var(--terracotta);
   stroke: none;
 }
 
@@ -941,7 +1037,28 @@ footer[id] {
   }
 }
 
-/* Skills */
+@media (min-width: 1000px) {
+  .wins {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .wins {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Skills: a dark field with Letter Glitch behind it. */
+
+.skills {
+  background: var(--night);
+  color: var(--cream);
+}
+
+.skills .sec-bg {
+  opacity: 0.9;
+}
 
 .groups {
   display: grid;
@@ -974,8 +1091,9 @@ footer[id] {
 
 .skill-chips li {
   padding: 0.2rem 0.7rem;
-  border: 1px solid var(--rule-2);
+  border: 1px solid var(--cream);
   border-radius: 2px;
+  background: var(--night);
   transition:
     scale 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
     background-color 200ms,
@@ -987,7 +1105,7 @@ footer[id] {
   .skill-chips li:hover {
     background: var(--block);
     border-color: var(--block);
-    color: #fff;
+    color: var(--ink);
     scale: 1.06;
   }
 
@@ -1001,7 +1119,8 @@ footer[id] {
 .edu {
   margin-top: 3rem;
   padding: clamp(1.4rem, 3vw, 2rem);
-  background: var(--paper-2);
+  background: var(--sand);
+  color: var(--ink);
   border-radius: 4px;
 }
 
@@ -1023,9 +1142,30 @@ footer[id] {
 .contact {
   position: relative;
   overflow: hidden;
-  padding-block: 6rem 11rem;
-  background: var(--navy);
-  color: #fff;
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+  background: var(--sea);
+  color: var(--cream);
+}
+
+.contact-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.plate-contact {
+  --plate-shadow: var(--ochre);
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+  }
+
+  .plate-contact {
+    order: 2;
+  }
 }
 
 .contact-body {
@@ -1040,7 +1180,7 @@ footer[id] {
 }
 
 .mail {
-  font-size: clamp(1.4rem, 4.2vw, 2.4rem);
+  font-size: clamp(1.25rem, 3vw, 2.1rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -1061,31 +1201,7 @@ footer[id] {
 
 .contact-note {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.art-sun,
-.art-red {
-  position: absolute;
-  pointer-events: none;
-}
-
-.art-sun {
-  top: 0;
-  right: 2rem;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: var(--sun);
-  border-bottom-left-radius: 100%;
-}
-
-.art-red {
-  right: -4rem;
-  bottom: -5rem;
-  width: 14rem;
-  height: 14rem;
-  background: var(--red);
-  border-radius: 50%;
+  color: var(--cream);
 }
 
 .copy-wrap {
@@ -1120,33 +1236,6 @@ footer[id] {
     translate: var(--dx) var(--dy);
     rotate: var(--rot);
     opacity: 0;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .art-sun,
-  .art-red {
-    translate: calc(var(--mx, 0) * 16px) calc(var(--my, 0) * 16px);
-    transition: translate 400ms var(--ease);
-  }
-}
-
-@media (min-width: 900px) {
-  .contact {
-    padding-block: 7rem;
-  }
-
-  .art-sun {
-    right: 12%;
-    width: 10rem;
-    height: 10rem;
-  }
-
-  .art-red {
-    right: -5rem;
-    bottom: -7rem;
-    width: clamp(14rem, 24vw, 22rem);
-    height: clamp(14rem, 24vw, 22rem);
   }
 }
 
@@ -1192,4 +1281,45 @@ footer[id] {
 
 #recognition .sec-bg {
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.3) 18%, #000 40%);
+}
+
+/* Print grain over each field; static, no blend mode, never catches the pointer. */
+.hero::after,
+.section::after,
+.contact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: var(--grain);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Review fixes */
+/* Keep the hero stars off the text column. */
+.hero .sec-bg {
+  mask-image: linear-gradient(90deg, transparent 0, transparent 42%, #000 62%);
+}
+
+@media (max-width: 999px) {
+  .hero .sec-bg {
+    mask-image: linear-gradient(180deg, transparent 0, transparent 55%, #000 75%);
+  }
+}
+
+/* The crown plate rides beside the taller tile grid. */
+@media (min-width: 1000px) {
+  .plate-rec {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* 44px tap targets. */
+.nav-name,
+.mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }

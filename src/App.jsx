@@ -8,31 +8,52 @@ import {
   skills,
   education,
 } from './data/content.js'
-import portrait from './assets/portrait.webp'
+import flowers from './assets/illustrations/flowers.webp'
+import flowers640 from './assets/illustrations/flowers-640.webp'
+import campus from './assets/illustrations/campus.webp'
+import campus640 from './assets/illustrations/campus-640.webp'
+import crown from './assets/illustrations/crown.webp'
+import crown640 from './assets/illustrations/crown-640.webp'
+import glasses from './assets/illustrations/glasses.webp'
+import glasses640 from './assets/illustrations/glasses-640.webp'
 import SectionBg from './components/SectionBg.jsx'
 
 const Particles = lazy(() => import('./components/backgrounds/Particles/Particles.jsx'))
 const PatternWaves = lazy(() => import('./components/backgrounds/PatternWaves/PatternWaves.jsx'))
 const LineWaves = lazy(() => import('./components/backgrounds/LineWaves/LineWaves.jsx'))
 const GradientASCII = lazy(() => import('./components/backgrounds/GradientASCII/GradientASCII.jsx'))
+const LetterGlitch = lazy(() => import('./components/backgrounds/LetterGlitch/LetterGlitch.jsx'))
 
 // Hex because the WebGL components parse it; values match the tokens in styles.css.
-const INK = { navy: '#1e2a5a', green: '#1f6b4f', teal: '#17707a', red: '#b83a28', paper: '#f3efe6', paper2: '#e9e3d6' }
+const PAL = {
+  sand: '#EDDCB1',
+  cream: '#F6EBD2',
+  ochre: '#EFBE78',
+  orange: '#CE7735',
+  terracotta: '#A6481F',
+  teal: '#236D6B',
+  cobalt: '#1A577D',
+  brown: '#6F4432',
+}
 
 const NAV = [
   ['Work', '#work'],
   ['Experience', '#experience'],
-  ['Recognition', '#recognition'],
+  ['Activities', '#recognition'],
   ['Skills', '#skills'],
   ['Contact', '#contact'],
 ]
 
-const BLOCKS = ['var(--navy)', 'var(--green)', 'var(--teal)', 'var(--red)']
+const CARDS = ['var(--cobalt)', 'var(--teal)', 'var(--terracotta)', 'var(--brown)']
+const FRAMES = ['var(--terracotta)', 'var(--teal)', 'var(--ochre)', 'var(--sea)']
+const HOPS = ['var(--ochre)', 'var(--sand)', 'var(--ochre)', 'var(--sand)']
+const GROUPS = ['var(--ochre)', 'var(--orange)', 'var(--grass)', 'var(--sand)']
 const SHAPES = ['square', 'circle', 'quarter', 'half']
 
 const FINE = '(hover: hover) and (pointer: fine)'
 const CALM = '(prefers-reduced-motion: no-preference)'
-const TICK_COLOURS = [...BLOCKS, 'var(--sun)']
+const TICK_COLOURS = ['var(--ochre)', 'var(--terracotta)', 'var(--orange)', 'var(--ochre)', 'var(--teal)']
+const BURST_COLOURS = ['var(--ochre)', 'var(--orange)', 'var(--cream)', 'var(--sand)', 'var(--ochre)']
 const FACTS = [
   ...projects.map((p) => p.headline),
   ...recognition.filter((r) => r.place === '1st').map((r) => `First prize, ${r.title}`),
@@ -87,27 +108,48 @@ function Shape({ kind, className, style }) {
   )
 }
 
+// A wide illustration in an ink frame; below the fold it is lazy.
+function Plate({ src, small, alt, sizes, className = '' }) {
+  return (
+    <figure className={`plate ${className}`}>
+      <img
+        src={src}
+        srcSet={`${small} 640w, ${src} 1200w`}
+        sizes={sizes}
+        width="1200"
+        height="800"
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  )
+}
+
 function HeroPortrait() {
   const [frame, setFrame] = useState(0)
+  const alt = 'Illustration of Veerbhadra Mahant smiling, with a flower arrangement balanced on his head'
   return (
-    <figure className="portrait" style={{ '--frame': BLOCKS[frame] }}>
+    <figure className="portrait" style={{ '--frame': FRAMES[frame] }}>
       <span className="portrait-block" aria-hidden="true" />
       <button
         type="button"
         className="portrait-btn"
-        aria-label="Change the frame colour of the portrait: Veerbhadra Mahant smiling, with a flower arrangement balanced on his head"
-        onClick={() => setFrame((f) => (f + 1) % BLOCKS.length)}
+        aria-label={`Change the frame colour of the illustration. ${alt}`}
+        onClick={() => setFrame((f) => (f + 1) % FRAMES.length)}
       >
         <img
           className="portrait-img"
-          src={portrait}
-          width="720"
-          height="1280"
-          alt="Veerbhadra Mahant smiling, with a flower arrangement balanced on his head"
+          src={flowers}
+          srcSet={`${flowers640} 640w, ${flowers} 1200w`}
+          sizes="(min-width: 900px) 40vw, 90vw"
+          width="1200"
+          height="800"
+          fetchPriority="high"
+          alt={alt}
         />
       </button>
       <Shape kind="circle" className="portrait-shape portrait-sun" />
-      <Shape kind="quarter" className="portrait-shape portrait-quarter" />
     </figure>
   )
 }
@@ -182,8 +224,8 @@ function Hero() {
         hoverEffect="none"
         glow={0}
         twinkle={0}
-        particleColors={[INK.navy, INK.green, INK.teal, INK.red]}
-        particleCount={160}
+        particleColors={[PAL.cream, PAL.ochre, PAL.orange]}
+        particleCount={90}
         particleBaseSize={300}
         speed={0.05}
         opacity={1}
@@ -196,7 +238,7 @@ function Hero() {
                 {[...part].map((ch) => {
                   const i = n++
                   return (
-                    <span key={i} className="ch" aria-hidden="true" style={{ '--i': i, '--c': BLOCKS[i % 4] }}>
+                    <span key={i} className="ch" aria-hidden="true" style={{ '--i': i, '--c': HOPS[i % 4] }}>
                       <span>{ch}</span>
                     </span>
                   )
@@ -245,7 +287,7 @@ function Ticker() {
 function Work() {
   return (
     <section className="section has-bg" id="work" aria-labelledby="work-h">
-      <SectionBg as={PatternWaves} interactive={false} backgroundColor={INK.paper} color="#3a372f" opacity={0.5} fade="none" />
+      <SectionBg as={PatternWaves} interactive={false} backgroundColor={PAL.sand} color={PAL.brown} opacity={0.18} fade="none" />
       <div className="wrap">
         <h2 id="work-h" className="title">
           Selected work
@@ -253,7 +295,7 @@ function Work() {
         <p className="intro">Four projects. Open a card to see how each one works.</p>
         <ul className="cards">
           {projects.map((p, i) => (
-            <li key={p.id} className="card" style={{ '--block': BLOCKS[i % 4] }}>
+            <li key={p.id} className="card" style={{ '--block': CARDS[i % 4] }}>
               <article aria-labelledby={`proj-${p.id}`}>
                 <Shape kind={SHAPES[i % 4]} className={`card-mark mark-${SHAPES[i % 4]}`} />
                 <h3 id={`proj-${p.id}`}>{p.name}</h3>
@@ -296,9 +338,9 @@ function Experience() {
         enableMouseInteraction={false}
         clickRipple={false}
         lightMode
-        color1={INK.navy}
-        color2={INK.teal}
-        color3={INK.green}
+        color1={PAL.terracotta}
+        color2={PAL.teal}
+        color3={PAL.cobalt}
         speed={0.12}
         opacity={0.4}
       />
@@ -306,13 +348,21 @@ function Experience() {
         <h2 id="exp-h" className="title">
           Internship and leadership
         </h2>
-        <ul className="rows">
+        <div className="exp-grid">
+          <Plate
+            src={campus}
+            small={campus640}
+            className="plate-exp"
+            sizes="(min-width: 1000px) 34vw, 90vw"
+            alt="Illustration of Veerbhadra standing on a college campus at dusk during a festival crowd"
+          />
+          <ul className="rows">
           {roles.map((r, i) => (
             <li key={r.role} className="row">
               <p className="row-when">{r.when}</p>
               <div className="row-body">
                 <h3>
-                  <span className="marker" style={{ background: BLOCKS[i % 4] }} aria-hidden="true" />
+                  <span className="marker" style={{ background: CARDS[(i + 2) % 4] }} aria-hidden="true" />
                   {r.role}
                 </h3>
                 <p className="muted">{r.org}</p>
@@ -324,7 +374,8 @@ function Experience() {
               </div>
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
       </div>
     </section>
   )
@@ -348,16 +399,24 @@ function Recognition() {
         mouseInteraction={false}
         clickEffect="none"
         lightMode
-        colors={[INK.navy, INK.teal, INK.paper2, INK.teal]}
+        colors={[PAL.ochre, PAL.orange, PAL.terracotta, PAL.brown]}
         speed={0.4}
-        gradientOpacity={0.55}
-        glyphOpacity={0.9}
+        gradientOpacity={0.5}
+        glyphOpacity={0.6}
       />
       <div className="wrap">
         <h2 id="rec-h" className="title">
           Activities
         </h2>
-        <ul className="wins" ref={ref}>
+        <div className="rec-grid">
+          <Plate
+            src={crown}
+            small={crown640}
+            className="plate-rec"
+            sizes="(min-width: 1000px) 38vw, 90vw"
+            alt="Illustration of Veerbhadra wearing a pixel-art crown and holding a pixel sword in a classroom"
+          />
+          <ul className="wins" ref={ref}>
           {recognition.map((r) => {
             const first = r.place === '1st'
             return (
@@ -374,7 +433,8 @@ function Recognition() {
               </li>
             )
           })}
-        </ul>
+          </ul>
+        </div>
       </div>
     </section>
   )
@@ -382,14 +442,29 @@ function Recognition() {
 
 function Skills() {
   return (
-    <section className="section" id="skills" aria-labelledby="skills-h">
+    <section className="section has-bg skills" id="skills" aria-labelledby="skills-h">
+      <SectionBg
+        as={LetterGlitch}
+        interactive={false}
+        clickEffect="none"
+        intro={false}
+        glitchColors={[PAL.ochre, PAL.terracotta, PAL.teal]}
+        baseColor={PAL.cream}
+        baseOpacity={0.14}
+        glitchAmount={0.5}
+        speed={0.35}
+        centerFade={0.65}
+        edgeFade={0.1}
+        flow={0.5}
+        dpr={1.5}
+      />
       <div className="wrap">
         <h2 id="skills-h" className="title">
           Tools
         </h2>
         <div className="groups">
           {skills.map((s, i) => (
-            <div className="group" key={s.group} style={{ '--block': BLOCKS[i % 4] }}>
+            <div className="group" key={s.group} style={{ '--block': GROUPS[i % 4] }}>
               <h3 className="group-name">
                 <Shape kind={SHAPES[i % 4]} className="group-mark" />
                 {s.group}
@@ -418,9 +493,7 @@ function Contact() {
   const { links } = person
   const [copied, setCopied] = useState(false)
   const [pieces, setPieces] = useState([])
-  const ref = useRef(null)
   const burstTimer = useRef(0)
-  useDrift(ref)
   useEffect(() => {
     if (!copied) return undefined
     const id = setTimeout(() => setCopied(false), 2000)
@@ -438,7 +511,7 @@ function Contact() {
         return {
           id: `${stamp}-${i}`,
           kind: SHAPES[i % 3],
-          color: TICK_COLOURS[i % 5],
+          color: BURST_COLOURS[i % 5],
           size: 8 + Math.round(Math.random() * 6),
           dx: `${Math.round(Math.cos(a) * d)}px`,
           dy: `${Math.round(Math.sin(a) * d)}px`,
@@ -459,10 +532,15 @@ function Contact() {
     )
   }
   return (
-    <footer className="contact" id="contact" ref={ref}>
-      <span className="art-sun" aria-hidden="true" />
-      <span className="art-red" aria-hidden="true" />
-      <div className="wrap">
+    <footer className="contact" id="contact">
+      <div className="wrap contact-grid">
+        <Plate
+          src={glasses}
+          small={glasses640}
+          className="plate-contact"
+          sizes="(min-width: 900px) 40vw, 90vw"
+          alt="Illustration of Veerbhadra wearing glasses and a green striped shirt, smiling"
+        />
         <div className="contact-body">
           <h2>Get in touch</h2>
           <a className="mail" href={`mailto:${person.email}`}>
