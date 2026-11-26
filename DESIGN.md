@@ -1,6 +1,6 @@
 # Design system: screen-printed poster plates
 
-The page is a set of screen-printed poster plates built around four illustrations supplied by the owner. The illustrations are flat cut-paper gouache with visible paper grain, hard-edged colour planes and warm light; the page takes its palette, its grain, its thick ink frames and its flat offset shadows from them. Each section is a full field of one colour. Direction is user-pinned ("analyze these photos. the style. the color scheme. and add these photos and accordingly update the website colors and give me a new look").
+The page is a set of screen-printed poster plates built around four illustrations supplied by the owner, plus the owner's own portrait photo in the hero. The illustrations are flat cut-paper gouache with visible paper grain, hard-edged colour planes and warm light; the page takes its palette, its grain, its thick ink frames and its flat offset shadows from them. Each section is a full field of one colour. Direction is user-pinned ("analyze these photos. the style. the color scheme. and add these photos and accordingly update the website colors and give me a new look").
 
 ## Colour
 
@@ -31,9 +31,9 @@ Contrast (WCAG): ink on sand 11.7, muted on sand 6.2, muted on sand-2 5.4, ink o
 
 ## Illustrations
 
-All four are 1200x800 (3:2) WebP with 640px variants, in `src/assets/illustrations/`, supplied by the owner; no other images exist. Every one sits in a 6px ink frame. Below the fold they use `loading="lazy" decoding="async"`, `srcSet` (640w, 1200w), `sizes` and width/height. No captions.
+The three illustrations are 1200x800 (3:2) WebP with 640px variants, in `src/assets/illustrations/`; the hero uses the owner's portrait photo (`src/assets/portrait.webp`, 720x1280, 9:16). No other images exist. Every one sits in a 6px ink frame. Below the fold they use `loading="lazy" decoding="async"`, `srcSet` (640w, 1200w), `sizes` and width/height. No captions.
 
-- flowers: hero, right side, on an offset block (the portrait button). Eager, `fetchPriority="high"`. Clicking cycles the block through terracotta, teal, ochre, sea. An ochre circle and a terracotta quarter on the corners drift with the pointer.
+- portrait photo: hero, right side, 9:16 at up to 19rem wide, on an offset block (the portrait button). Eager, `fetchPriority="high"`. Clicking cycles the block through terracotta, teal, ochre, sea. An ochre circle on the corner drifts with the pointer.
 - campus: Experience, a sticky plate beside the rows on desktop (1000px and up), between heading and rows on mobile. Ink offset shadow.
 - crown: Activities, beside the four tiles on desktop (1000px and up), above them on mobile.
 - glasses: Contact, beside "Get in touch" on desktop, above on mobile; ochre offset shadow because ink would vanish on sea.
@@ -82,7 +82,7 @@ Hover and drift apply only under `(hover: hover) and (pointer: fine)`; touch kee
 
 ## Rules
 
-- All facts come from `src/data/content.js` (the resume). No invented testimonials, screenshots or metrics; the only images are the owner's four illustrations.
+- All facts come from `src/data/content.js` (the resume). No invented testimonials, screenshots or metrics; the only images are the owner's three illustrations and portrait photo.
 - No glass or blur. Hard offset ink shadows belong to this world (plates, lifted cards and tiles). No captions under images, no section numbers, no kickers, no emoji.
 - Text never sits on a busy background without a solid fill or a quiet layer; decorative shapes are `aria-hidden` and never cover copy.
 - Project colours are assigned by index in `App.jsx`, not stored in content.

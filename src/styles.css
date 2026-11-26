@@ -412,11 +412,11 @@ footer[id] {
   margin-top: 2rem;
 }
 
-/* Hero illustration: 3:2 in a 6px ink frame on an offset block, with two flat shapes on the corners. */
+/* Hero portrait photo: 9:16 in a 6px ink frame on an offset block, with two flat shapes on the corners. */
 .portrait {
   --offset: clamp(0.75rem, 2.5vw, 1.25rem);
   position: relative;
-  width: min(calc(100% - var(--offset) - 1rem), 36rem);
+  width: min(calc(100% - 3.5rem), 19rem);
   margin: 1.5rem auto calc(var(--offset) + 1rem);
   justify-self: center;
 }
@@ -456,7 +456,7 @@ footer[id] {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 9 / 16;
   border: 6px solid var(--ink);
   background: var(--sand-2);
 }

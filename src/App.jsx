@@ -8,8 +8,7 @@ import {
   skills,
   education,
 } from './data/content.js'
-import flowers from './assets/illustrations/flowers.webp'
-import flowers640 from './assets/illustrations/flowers-640.webp'
+import portrait from './assets/portrait.webp'
 import campus from './assets/illustrations/campus.webp'
 import campus640 from './assets/illustrations/campus-640.webp'
 import crown from './assets/illustrations/crown.webp'
@@ -128,23 +127,21 @@ function Plate({ src, small, alt, sizes, className = '' }) {
 
 function HeroPortrait() {
   const [frame, setFrame] = useState(0)
-  const alt = 'Illustration of Veerbhadra Mahant smiling, with a flower arrangement balanced on his head'
+  const alt = 'Veerbhadra Mahant smiling, with a flower arrangement balanced on his head'
   return (
     <figure className="portrait" style={{ '--frame': FRAMES[frame] }}>
       <span className="portrait-block" aria-hidden="true" />
       <button
         type="button"
         className="portrait-btn"
-        aria-label={`Change the frame colour of the illustration. ${alt}`}
+        aria-label={`Change the frame colour of the portrait. ${alt}`}
         onClick={() => setFrame((f) => (f + 1) % FRAMES.length)}
       >
         <img
           className="portrait-img"
-          src={flowers}
-          srcSet={`${flowers640} 640w, ${flowers} 1200w`}
-          sizes="(min-width: 900px) 40vw, 90vw"
-          width="1200"
-          height="800"
+          src={portrait}
+          width="720"
+          height="1280"
           fetchPriority="high"
           alt={alt}
         />
